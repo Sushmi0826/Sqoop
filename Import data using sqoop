@@ -39,6 +39,34 @@ occupation
 user
 [training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --table movie --fields-terminated-by '\t' --username training --password training
 [training@localhost ~]$ sqoop export --connect jdbc:mysql://localhost/movielens -- username training --password training --export-dir hiveworks/employee.txt --table emp
+[training@localhost ~]$ sqoop import-all-tables --connect jdbc:mysql://localhost/hue --username training --password training
+
+[training@localhost ~]$ sqoop create-hive-table --connect jdbc:mysql://localhost/movielens --username training --password training --table emp --hive-table emps
+23/03/16 10:57:42 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/16 10:57:42 INFO tool.BaseSqoopTool: Using Hive-specific delimiters for output. You can override
+23/03/16 10:57:42 INFO tool.BaseSqoopTool: delimiters with --fields-terminated-by, etc.
+23/03/16 10:57:42 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/16 10:57:42 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+23/03/16 10:57:42 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+23/03/16 10:57:53 INFO hive.HiveImport: Removing temporary files from import process: hdfs://0.0.0.0:8020/user/training/emp/_logs
+23/03/16 10:57:53 INFO hive.HiveImport: Loading uploaded data into Hive
+23/03/16 10:57:54 INFO hive.HiveImport: Logging initialized using configuration in file:/etc/hive/conf.dist/hive-log4j.properties
+23/03/16 10:57:54 INFO hive.HiveImport: Hive history file=/tmp/training/hive_job_log_training_202303161057_2069569542.txt
+23/03/16 10:58:08 INFO hive.HiveImport: OK
+23/03/16 10:58:08 INFO hive.HiveImport: Time taken: 13.306 seconds
+23/03/16 10:58:08 INFO hive.HiveImport: Hive import complete.
+23/03/16 10:58:08 INFO hive.HiveImport: Export directory is not empty, keeping it.
+
+[training@localhost ~]$ sqoop codegen --connect jdbc:mysql://localhost/movielens --username training --password training --table emp
+23/03/16 11:03:53 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/16 11:03:53 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/16 11:03:53 INFO tool.CodeGenTool: Beginning code generation
+23/03/16 11:03:53 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+23/03/16 11:03:53 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `emp` AS t LIMIT 1
+23/03/16 11:03:53 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/66523c6b21cb948d943ffd67a3698211/emp.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/16 11:03:54 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/66523c6b21cb948d943ffd67a3698211/emp.jar
 
 Before exporting, hadoop fs -put employee.txt hiveworks
 
