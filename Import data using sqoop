@@ -17,7 +17,8 @@ Available commands:
   version            Display version information
 
 See 'sqoop help COMMAND' for information on a specific command.
-[training@localhost ~]$  sqoop list-databases --connect jdbc:mysql://localhost --username training --password training23/03/05 06:49:18 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+[training@localhost ~]$  sqoop list-databases --connect jdbc:mysql://localhost --username training --password training
+23/03/05 06:49:18 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
 23/03/05 06:49:18 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
 information_schema
 hue
